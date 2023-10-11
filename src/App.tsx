@@ -11,7 +11,7 @@ interface Config {
 function App() {
   const [config, setConfig] = useState<Config>();
   const [maps, setMaps] = useState<{[name: string]: any}>({});
-  const [currentMap, setCurrentMap] = useState("field");
+  const [currentMap, setCurrentMap] = useState("wagon-in-field");
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/data/config.json`)
@@ -33,16 +33,15 @@ function App() {
     });
   }, [config])
 
-  console.log(maps);
-
   return (
     <div className="App">
       {(function () {
         const currentMapData = maps[currentMap];
         if (currentMapData === undefined) { return; }
-        console.log(`${currentMap} map data:`,currentMapData);
         
-        return <Map imageUrl={currentMapData['image url']} imageSize={currentMapData['image size']}/>
+        return <Map 
+          imageUrl={currentMapData['image url']} 
+          mapSize={currentMapData['map size']} />
         })()
       }
     </div>

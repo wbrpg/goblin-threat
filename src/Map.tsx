@@ -1,20 +1,28 @@
+import { useEffect, useRef, useState } from "react";
+
 interface MapProps {
     imageUrl: string,
-    imageSize: [number, number]
+    mapSize: [number, number]
 }
 
-function Map({imageUrl}: MapProps) {
-    console.log(imageUrl);
-    const mapSize = [1000, 1000];
-    const mapPosition = [100, 100];
+function Map({imageUrl, mapSize}: MapProps) {
+    const tileSizePx = 100;
+
+    const mapPosition = [0, 0].map(e => e * tileSizePx);
+
     return (
-        <div style={{width: '100vw', overflow: 'hidden'}}>
+        <div style={{
+            width: '100vw', 
+            overflow: 'hidden',
+            backgroundColor: 'gray',
+            }}>
             <div 
                 style={{
                     width: '100vw', aspectRatio: '1',
                     backgroundImage: `url('${imageUrl}')`, 
-                    backgroundSize:  `${mapSize[0]}px ${mapSize[1]}px`, 
-                    backgroundPosition: `-${mapPosition[0]}px ${mapPosition[1]}px`
+                    backgroundSize:  `${mapSize[0] * tileSizePx}px`, 
+                    backgroundPosition: `${mapPosition[0]}px ${mapPosition[1]}px`,
+                    backgroundRepeat: 'no-repeat',
                 }}
             />
         </div>
