@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Map from './Map';
+import YAML from 'yaml'
+
+interface Config {
+  maps: string[]
+}
 
 function App() {
+  const [config, setConfig] = useState<Config>();
+  const [maps, setMaps] = useState<{[name: string]: any}>({});
+  const [currentMap, setCurrentMap] = useState("field");
+
+  useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/data/config.json`)
+      .then(response => response.json())
+      .then(json => setConfig(json));
+    }, []);
+
+  useEffect(() => {
+    if (config === undefined) {
+      return;
+    }
+
+    config.maps.forEach(map => {
+      fetch(`${process.env.PUBLIC_URL}/data/maps/${map}.yaml`)
+        .then(response => response.text())
+        .then(text => {
+          setMaps(maps => { return {...maps, [map]: YAML.parse(text)}})
+        })
+    });
+  }, [config])
+
+  console.log(maps);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {(function () {
+        const currentMapData = maps[currentMap];
+        if (currentMapData === undefined) { return; }
+        console.log(`${currentMap} map data:`,currentMapData);
+        
+        return <Map imageUrl={currentMapData['image url']} imageSize={currentMapData['image size']}/>
+        })()
+      }
     </div>
   );
 }
