@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/goblin-threat/static/css/main.073c9b0a.css",
-    "main.js": "/goblin-threat/static/js/main.550a31e8.js",
-    "static/js/787.9eefe0ba.chunk.js": "/goblin-threat/static/js/787.9eefe0ba.chunk.js",
-    "index.html": "/goblin-threat/index.html",
-    "main.073c9b0a.css.map": "/goblin-threat/static/css/main.073c9b0a.css.map",
-    "main.550a31e8.js.map": "/goblin-threat/static/js/main.550a31e8.js.map",
-    "787.9eefe0ba.chunk.js.map": "/goblin-threat/static/js/787.9eefe0ba.chunk.js.map"
+    "main.css": "/wbrpg/goblin-threat/static/css/main.073c9b0a.css",
+    "main.js": "/wbrpg/goblin-threat/static/js/main.1e21872d.js",
+    "static/js/787.9eefe0ba.chunk.js": "/wbrpg/goblin-threat/static/js/787.9eefe0ba.chunk.js",
+    "index.html": "/wbrpg/goblin-threat/index.html",
+    "main.073c9b0a.css.map": "/wbrpg/goblin-threat/static/css/main.073c9b0a.css.map",
+    "main.1e21872d.js.map": "/wbrpg/goblin-threat/static/js/main.1e21872d.js.map",
+    "787.9eefe0ba.chunk.js.map": "/wbrpg/goblin-threat/static/js/787.9eefe0ba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.550a31e8.js"
+    "static/js/main.1e21872d.js"
   ]
 }
