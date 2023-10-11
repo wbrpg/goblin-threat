@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Map from './Map';
 import YAML from 'yaml'
@@ -41,7 +40,8 @@ function App() {
         
         return <Map 
           imageUrl={currentMapData['image url']} 
-          mapSize={currentMapData['map size']} />
+          mapSize={currentMapData['map size']} 
+          mapPosition={[1, 1]}/>
         })()
       }
     </div>
