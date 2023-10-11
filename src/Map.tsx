@@ -1,15 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-type Point2D = [number, number];
-type MapCoordinates = [number, number]
 
 interface MapProps {
     imageUrl: string,
     mapSize: [number, number]
     mapPosition: MapCoordinates
+    setMapPosition: (newMapPosition: MapCoordinates) => void
 }
 
-function Map({imageUrl, mapSize, mapPosition}: MapProps) {
+function Map({imageUrl, mapSize, mapPosition, setMapPosition}: MapProps) {
     const tileSizePx = 100;
 
     const ref = useRef<HTMLDivElement>(null);
@@ -62,8 +61,9 @@ function Map({imageUrl, mapSize, mapPosition}: MapProps) {
                 backgroundColor: 'gray',
             }}
             onClick={(e) => {
-                console.log("click", e.clientX, e.clientY);
-                console.log("position", positionToMapPosition([e.clientX, e.clientY]));
+                const selectedMapPosition = positionToMapPosition([e.clientX, e.clientY]);
+                if (selectedMapPosition === null) { return; }
+                setMapPosition(selectedMapPosition);
             }}>
             <div 
                 style={{

@@ -11,6 +11,7 @@ function App() {
   const [config, setConfig] = useState<Config>();
   const [maps, setMaps] = useState<{[name: string]: any}>({});
   const [currentMap, setCurrentMap] = useState("wagon-in-field");
+  const [mapPosition, setMapPosition] = useState<MapCoordinates>([1, 1])
 
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/data/config.json`)
@@ -41,7 +42,8 @@ function App() {
         return <Map 
           imageUrl={currentMapData['image url']} 
           mapSize={currentMapData['map size']} 
-          mapPosition={[1, 1]}/>
+          mapPosition={mapPosition}
+          setMapPosition={setMapPosition} />
         })()
       }
     </div>
